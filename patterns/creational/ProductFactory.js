@@ -3,6 +3,12 @@ class Product {
         this.name = details.name || 'Generic Product';
         this.price = details.price || 0;
     }
+    getPrice() {
+        return this.price;
+    }
+    getDescription() {
+        return this.name;
+    }
     describe() {
         console.log(`${this.name} - $${this.price}`);
     }
@@ -36,6 +42,18 @@ class ProductFactory {
         // Use a switch statement or if/else chain to check the `type`.
         // Based on the `type`, return a new instance of `Book`, `Electronic`, or a default `Product`.
         // Pass the `details` object to the constructor of the chosen class.
+        switch (type.toLowerCase()) {
+            case 'book':
+                return new Book(details);
+
+            case 'electronic':
+                return new Electronic(details);
+
+            case 'product':
+            default:
+                // Nếu type không khớp hoặc là 'product' thường, trả về Product gốc
+                return new Product(details);
+        }
     }
 }
 

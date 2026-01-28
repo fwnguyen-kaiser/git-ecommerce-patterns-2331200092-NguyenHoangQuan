@@ -7,9 +7,11 @@
 // 5. Export the class.
 
 class CartService {
+    static instance = null;
     constructor() {
-        // ... your implementation here ...
+        if (CartService.instance) return CartService.instance;
         this.products = [];
+        CartService.instance = this;
     }
 
     addProduct(product) {
